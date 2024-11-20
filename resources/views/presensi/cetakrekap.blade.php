@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>A4</title>
+    <title>cetak laporan</title>
 
     <!-- Normalize or reset CSS with your favorite library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -14,9 +14,9 @@
     <!-- Set page size here: A5, A4 or A3 -->
     <!-- Set also "landscape" if you need -->
     <style>
-        @page {
+        /* @page {
             size: A4
-        }
+        } */
 
         #title {
             font-family: Arial, Helvetica, sans-serif;
@@ -92,15 +92,15 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 30px">
-                    <img src="{{ asset('assets/img/logopresensi.png') }}" width="70" height="70" alt="">
+                    <img src="{{ asset('assets/img/Logo_Puskesmas_Balaraja.png') }}" width="70" height="70" alt="">
                 </td>
                 <td>
                     <span id="title">
-                        REKAP PRESENSI KARYAWAN<br>
+                        REKAP PRESENSI<br>
                         PERIODE {{ strtoupper($namabulan[$bulan]) }} {{ $tahun }}<br>
-                        PT. ADAM ADIFA<br>
+                        PUSKESMAS BALARAJA<br>
                     </span>
-                    <span><i>Jln. H. Dahlan No. 75, Kecamatan Sindangrasa, Kabupaten Ciamis</i></span>
+                    <span><i>Jln. Raya Serang KM. 24, Desa Talagasari - Balaraja</i></span>
                 </td>
             </tr>
         </table>
@@ -117,75 +117,75 @@
             </tr>
             <tr>
                 @foreach ($rangetanggal as $d)
-                    @if ($d != null)
-                        <th>{{ date('d', strtotime($d)) }}</th>
-                    @endif
+                @if ($d != null)
+                <th>{{ date('d', strtotime($d)) }}</th>
+                @endif
                 @endforeach
 
             </tr>
             @foreach ($rekap as $r)
-                <tr>
-                    <td>{{ $r->nik }}</td>
-                    <td>{{ $r->nama_lengkap }}</td>
+            <tr>
+                <td>{{ $r->nik }}</td>
+                <td>{{ $r->nama_lengkap }}</td>
 
-                    <?php
-                    $jml_hadir = 0;
-                    $jml_izin = 0;
-                    $jml_sakit = 0;
-                    $jml_cuti = 0;
-                    $jml_alpa = 0;
-                    $color = "";
-                    for($i=1; $i<=$jmlhari; $i++){
-                        $tgl = "tgl_".$i;
-                        $tgl_presensi = $rangetanggal[$i-1];
-                        $search_items = [
-                            'nik' => $r->nik,
-                            'tanggal_libur' => $tgl_presensi
-                        ];
-                        $ceklibur = cekkaryawanlibur($datalibur, $search_items);
+                <?php
+                $jml_hadir = 0;
+                $jml_izin = 0;
+                $jml_sakit = 0;
+                $jml_cuti = 0;
+                $jml_alpa = 0;
+                $color = "";
+                for ($i = 1; $i <= $jmlhari; $i++) {
+                    $tgl = "tgl_" . $i;
+                    $tgl_presensi = $rangetanggal[$i - 1];
+                    $search_items = [
+                        'nik' => $r->nik,
+                        'tanggal_libur' => $tgl_presensi
+                    ];
+                    $ceklibur = cekkaryawanlibur($datalibur, $search_items);
 
-                        $datapresensi = explode("|",$r->$tgl);
-                        if($r->$tgl != NULL){
-                            $status = $datapresensi[2];
-                        }else{
-                            $status = "";
-                        }
+                    $datapresensi = explode("|", $r->$tgl);
+                    if ($r->$tgl != NULL) {
+                        $status = $datapresensi[2];
+                    } else {
+                        $status = "";
+                    }
 
-                        $cekhari = gethari(date('D',strtotime($tgl_presensi)));
-                        if($status == "h"){
-                            $jml_hadir += 1;
-                            $color = "white";
-                        }
+                    $cekhari = gethari(date('D', strtotime($tgl_presensi)));
+                    if ($status == "h") {
+                        $jml_hadir += 1;
+                        $color = "white";
+                    }
 
-                        if($status == "i"){
-                            $jml_izin += 1;
-                            $color = "#ffbb00";
-                        }
+                    if ($status == "i") {
+                        $jml_izin += 1;
+                        $color = "#ffbb00";
+                    }
 
-                        if($status == "s"){
-                            $jml_sakit += 1;
-                            $color = "#34a1eb";
-                        }
+                    if ($status == "s") {
+                        $jml_sakit += 1;
+                        $color = "#34a1eb";
+                    }
 
-                        if($status == "c"){
-                            $jml_cuti += 1;
-                            $color = "#a600ff";
-                        }
-
-
-                        if(empty($status) && empty($ceklibur) && $cekhari != 'Minggu'){
-                            $jml_alpa += 1;
-                            $color = "red";
-                        }
-
-                        if(!empty($ceklibur)){
-                            $color = "green";
-                        }
+                    if ($status == "c") {
+                        $jml_cuti += 1;
+                        $color = "#a600ff";
+                    }
 
 
-                        if($cekhari == "Minggu"){
-                            $color = "orange";
-                        }
+                    if (empty($status) && empty($ceklibur) && $cekhari != 'Minggu') {
+                        $jml_alpa += 1;
+                        $color = "red";
+                    }
+
+                    if (!empty($ceklibur)) {
+                        $color = "green";
+                    }
+
+
+                    if ($cekhari == "Minggu") {
+                        $color = "orange";
+                    }
 
 
 
@@ -195,43 +195,39 @@
                         {{ $status }}
 
                     </td>
-                    <?php
-                    }
+                <?php
+                }
                 ?>
-                    <td>{{ !empty($jml_hadir) ? $jml_hadir : '' }}</td>
-                    <td>{{ !empty($jml_izin) ? $jml_izin : '' }}</td>
-                    <td>{{ !empty($jml_sakit) ? $jml_sakit : '' }}</td>
-                    <td>{{ !empty($jml_cuti) ? $jml_cuti : '' }}</td>
-                    <td>{{ !empty($jml_alpa) ? $jml_alpa : '' }}</td>
-                </tr>
+                <td>{{ !empty($jml_hadir) ? $jml_hadir : '' }}</td>
+                <td>{{ !empty($jml_izin) ? $jml_izin : '' }}</td>
+                <td>{{ !empty($jml_sakit) ? $jml_sakit : '' }}</td>
+                <td>{{ !empty($jml_cuti) ? $jml_cuti : '' }}</td>
+                <td>{{ !empty($jml_alpa) ? $jml_alpa : '' }}</td>
+            </tr>
             @endforeach
         </table>
         <h4>Keterangan Libur :</h4>
         <ol>
             @foreach ($harilibur as $d)
-                <li>{{ date('d-m-Y', strtotime($d->tanggal_libur)) }} - {{ $d->keterangan }}</li>
+            <li>{{ date('d-m-Y', strtotime($d->tanggal_libur)) }} - {{ $d->keterangan }}</li>
             @endforeach
         </ol>
         <table width="100%" style="margin-top:100px">
-            <tr>
+            <!-- <tr>
                 <td></td>
-                <td style="text-align: center">Tasikmalaya, {{ date('d-m-Y') }}</td>
+                <td style="text-align: center">Tangerang, {{ date('d-m-Y') }}</td>
             </tr>
             <tr>
                 <td style="text-align: center; vertical-align:bottom" height="100px">
-                    <u>Qiana Aqila</u><br>
-                    <i><b>HRD Manager</b></i>
+                    <u>.........</u><br>
+                    <i><b>.........</b></i>
                 </td>
                 <td style="text-align: center; vertical-align:bottom">
-                    <u>Daffa</u><br>
-                    <i><b>Direktur</b></i>
+                    <u>.........</u><br>
+                    <i><b>.........</b></i>
                 </td>
-            </tr>
+            </tr> -->
         </table>
-
-
     </section>
-
 </body>
-
 </html>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>A4</title>
+    <title>cetak laporan</title>
 
     <!-- Normalize or reset CSS with your favorite library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
@@ -70,15 +70,15 @@
         <table style="width: 100%">
             <tr>
                 <td style="width: 30px">
-                    <img src="{{ asset('assets/img/logopresensi.png') }}" width="70" height="70" alt="">
+                    <img src="{{ asset('assets/img/Logo_Puskesmas_Balaraja.png') }}" width="70" height="70" alt="">
                 </td>
                 <td>
                     <span id="title">
-                        LAPORAN PRESENSI KARYAWAN<br>
+                        LAPORAN PRESENSI<br>
                         PERIODE {{ strtoupper($namabulan[$bulan]) }} {{ $tahun }}<br>
-                        PT. ADAM ADIFA<br>
+                        PUSKESMAS BALARAJA<br>
                     </span>
-                    <span><i>Jln. H. Dahlan No. 75, Kecamatan Sindangrasa, Kabupaten Ciamis</i></span>
+                    <span><i>Jln. Raya Serang KM. 24, Desa Talagasari - Balaraja</i></span>
                 </td>
             </tr>
         </table>
@@ -86,7 +86,7 @@
             <tr>
                 <td rowspan="6">
                     @php
-                        $path = Storage::url('uploads/karyawan/' . $karyawan->foto);
+                    $path = Storage::url('uploads/karyawan/' . $karyawan->foto);
                     @endphp
                     <img src="{{ url($path) }}" alt="" width="120px" height="150">
                 </td>
@@ -131,69 +131,69 @@
             </tr>
 
             @foreach ($presensi as $d)
-                @if ($d->status == 'h')
-                    @php
-                        $path_in = Storage::url('uploads/absensi/' . $d->foto_in);
-                        $path_out = Storage::url('uploads/absensi/' . $d->foto_out);
-                        $terlambat = hitungjamterlambat($d->jam_masuk, $d->jam_in);
-                        $terlambat_desimal = hitungjamterlambatdesimal($d->jam_masuk, $d->jam_in);
-                        $j_terlambat = explode(':', $terlambat);
-                        $jam_terlambat = intVal($j_terlambat[0]);
-                        if ($jam_terlambat < 1) {
-                            $jam_mulai = $d->jam_masuk;
-                        } else {
-                            $jam_mulai = $d->jam_in > $d->jam_masuk ? $d->jam_in : $d->jam_masuk;
-                        }
-                        $jam_berakhir = $d->jam_out > $d->jam_pulang ? $d->jam_pulang : $d->jam_out;
-                        $total_jam = hitungjamkerja(
-                            $d->tgl_presensi,
-                            date('H:i', strtotime($jam_mulai)),
-                            date('H:i', strtotime($jam_berakhir)),
-                            $d->total_jam,
-                            $d->lintashari,
-                            date('H:i', strtotime($d->awal_jam_istirahat)),
-                            date('H:i', strtotime($d->akhir_jam_istirahat)),
-                        );
-                    @endphp
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</td>
-                        <td>{{ $d->jam_in }}</td>
-                        <td><img src="{{ url($path_in) }}" alt="" class="foto"></td>
-                        <td>{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen' }}</td>
-                        <td>
-                            @if ($d->jam_out != null)
-                                <img src="{{ url($path_out) }}" alt="" class="foto">
-                            @else
-                                <img src="{{ asset('assets/img/camera.jpg') }}" alt="" class="foto">
-                            @endif
-                        </td>
-                        <td style="text-align: center">{{ $d->status }}</td>
-                        <td>
-                            @if ($d->jam_in > $d->jam_masuk)
-                                Terlambat {{ $terlambat_desimal }} Jam
-                            @else
-                                Tepat Waktu
-                            @endif
-                        </td>
-                        <td>
-                            {{ $total_jam }}
-                        </td>
-                    </tr>
+            @if ($d->status == 'h')
+            @php
+            $path_in = Storage::url('uploads/absensi/' . $d->foto_in);
+            $path_out = Storage::url('uploads/absensi/' . $d->foto_out);
+            $terlambat = hitungjamterlambat($d->jam_masuk, $d->jam_in);
+            $terlambat_desimal = hitungjamterlambatdesimal($d->jam_masuk, $d->jam_in);
+            $j_terlambat = explode(':', $terlambat);
+            $jam_terlambat = intVal($j_terlambat[0]);
+            if ($jam_terlambat < 1) {
+                $jam_mulai=$d->jam_masuk;
+                } else {
+                $jam_mulai = $d->jam_in > $d->jam_masuk ? $d->jam_in : $d->jam_masuk;
+                }
+                $jam_berakhir = $d->jam_out > $d->jam_pulang ? $d->jam_pulang : $d->jam_out;
+                $total_jam = hitungjamkerja(
+                $d->tgl_presensi,
+                date('H:i', strtotime($jam_mulai)),
+                date('H:i', strtotime($jam_berakhir)),
+                $d->total_jam,
+                $d->lintashari,
+                date('H:i', strtotime($d->awal_jam_istirahat)),
+                date('H:i', strtotime($d->akhir_jam_istirahat)),
+                );
+                @endphp
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</td>
+                    <td>{{ $d->jam_in }}</td>
+                    <td><img src="{{ url($path_in) }}" alt="" class="foto"></td>
+                    <td>{{ $d->jam_out != null ? $d->jam_out : 'Belum Absen' }}</td>
+                    <td>
+                        @if ($d->jam_out != null)
+                        <img src="{{ url($path_out) }}" alt="" class="foto">
+                        @else
+                        <img src="{{ asset('assets/img/camera.jpg') }}" alt="" class="foto">
+                        @endif
+                    </td>
+                    <td style="text-align: center">{{ $d->status }}</td>
+                    <td>
+                        @if ($d->jam_in > $d->jam_masuk)
+                        Terlambat {{ $terlambat_desimal }} Jam
+                        @else
+                        Tepat Waktu
+                        @endif
+                    </td>
+                    <td>
+                        {{ $total_jam }}
+                    </td>
+                </tr>
                 @else
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td style="text-align: center">{{ $d->status }}</td>
-                        <td>{{ $d->keterangan }}</td>
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: center">{{ $d->status }}</td>
+                    <td>{{ $d->keterangan }}</td>
+                    <td></td>
+                </tr>
                 @endif
-            @endforeach
+                @endforeach
         </table>
 
         <table width="100%" style="margin-top:100px">
