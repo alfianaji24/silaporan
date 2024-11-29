@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#004AAD">
-    <title>E-Presensi Geolocation</title>
+    <title>SILAPORAN - Sistem Laporan Presensi Puskesmas Balaraja | LOGIN</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
     <link rel="icon" type="image/png" href="{{ asset('icon-pkmbalaraja.jpg') }}" sizes="32x32">
