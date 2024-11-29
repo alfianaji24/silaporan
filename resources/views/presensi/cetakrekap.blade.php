@@ -190,8 +190,7 @@
 
 
                 ?>
-                    <td style="background-color: {{ $color }}">
-
+                    <td>
                         {{ $status }}
 
                     </td>
@@ -230,4 +229,5 @@
         </table>
     </section>
 </body>
+
 </html>

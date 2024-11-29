@@ -197,7 +197,7 @@
 
 
                 ?>
-                    <td style="background-color: {{ $color }}">
+                    <td>
                         @if ($status == 'h')
                         <span style="font-weight: bold">
                             {{ $nama_jam_kerja }}

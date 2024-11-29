@@ -11,8 +11,8 @@
     <title>E-Presensi Geolocation</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
-    <link rel="icon" type="image/png" href="{{ asset('icon-512.png') }}" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon-512.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('icon-pkmbalaraja.jpg') }}" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icon-pkmbalaraja.jpg') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
 </head>
@@ -39,12 +39,12 @@
             </div>
             <div class="section mt-1 mb-5">
                 @php
-                    $messagewarning = Session::get('warning');
+                $messagewarning = Session::get('warning');
                 @endphp
                 @if (Session::get('warning'))
-                    <div class="alert alert-outline-warning">
-                        {{ $messagewarning }}
-                    </div>
+                <div class="alert alert-outline-warning">
+                    {{ $messagewarning }}
+                </div>
                 @endif
                 <form action="/proseslogin" method="POST">
                     @csrf
@@ -68,9 +68,9 @@
                         </div>
                     </div>
 
-                    <div class="form-links mt-2">
+                    <!-- <div class="form-links mt-2">
                         <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
-                    </div>
+                    </div> -->
 
                     <div class="form-button-group">
                         <button type="submit" class="btn btn-success btn-block btn-lg">Log in</button>
