@@ -64,7 +64,7 @@ class PresensiController extends Controller
         $scan           = $data['scan'];
 
         DB::table('testpresensi')->insert([
-            'desc' => $data
+            'desc' => $status_scan
         ]);
         die;
         // $kode_jam_kerja = $request->kode_jam_kerja;
