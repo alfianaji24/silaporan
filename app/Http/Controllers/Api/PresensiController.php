@@ -89,7 +89,7 @@ class PresensiController extends Controller
 
         $kode_cabang = $karyawan->kode_cabang;
         $kode_dept = $karyawan->kode_dept;
-        $tgl_presensi = $ceklintashari_presensi == 1 && $jamsekarang < "08:00" ? $tgl_sebelumnya : $hariini;
+        $tgl_presensi = $ceklintashari_presensi == 1 && $jamsekarang < "09:00" ? $tgl_sebelumnya : $hariini;
         $jam = $jamsekarang;
 
         // Cek Jam Kerja Karyawan
