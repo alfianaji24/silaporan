@@ -140,8 +140,6 @@
                         } else {
                             $total_jam_kerja = 0;
                         }
-
-                        $denda = hitungdenda($terlambat);
                     } else {
                         $status = "";
                         $jam_in = "";
@@ -152,12 +150,6 @@
                         $total_jam_kerja = 0;
                         $terlambat = 0;
                     }
-                    //Denda
-                    //Jika Terlambat < 5 Menit Maka Denda 0
-                    // Jika Terlambat 5 - 9 Menit Denda 5000
-                    // Jika Terlambat 10 - 14 Menit Denda 1000
-                    //Jika Terlambat nya 15 - 59 Menit Dedna 15000
-                    //Jika Terlambatnya Lebih dari sama dengan 1 Jam Maka di Potong Upah Perjam
                     $cekhari = gethari(date('D', strtotime($tgl_presensi)));
                     if ($status == "h") {
                         $jml_hadir += 1;
@@ -219,7 +211,6 @@
                         <span style="color:red ">
                             Terlambat : {{ $terlambat }} ({{ $terlambat_desimal }})
                             <br>
-                            Denda : {{ $denda }}
                         </span>
                         @endif
                         @endif

@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PresensiController extends Controller
 {
-
     public function gethari($hari)
     {
         // $hari = date("D");
@@ -53,7 +51,6 @@ class PresensiController extends Controller
 
     public function store(Request $request)
     {
-
         $original_data  = file_get_contents('php://input');
         $decoded_data   = json_decode($original_data, true);
         $encoded_data   = json_encode($decoded_data);
@@ -63,21 +60,13 @@ class PresensiController extends Controller
         $status_scan    = $data['status_scan'];
         $scan           = $data['scan'];
 
-        // DB::table('testpresensi')->insert([
-        //     'desc' => $status_scan
-        // ]);
-        // die;
-        // $kode_jam_kerja = $request->kode_jam_kerja;
         $karyawan = DB::table('karyawan')->where('pin', $pin)->first();
         if ($karyawan == null) {
             return response()->json(['status' => false, 'message' => 'Pin Belum Terdaftar'], 500);
         }
         $nik = $karyawan->nik;
-        //     $status_location = Auth::guard('karyawan')->user()->status_location;
         $hariini = date("Y-m-d", strtotime($scan));
         $jamsekarang = date("H:i", strtotime($scan));
-
-        // return response()->json(['status' => true, 'data' => ['nik' => $nik, 'jamsekarang' => $jamsekarang, 'hariini' => $hariini]], 200);
         $tgl_sebelumnya = date('Y-m-d', strtotime("-1 days", strtotime($hariini)));
         $cekpresensi_sebelumnya = DB::table('presensi')
             ->join('jam_kerja', 'presensi.kode_jam_kerja', '=', 'jam_kerja.kode_jam_kerja')
@@ -86,7 +75,6 @@ class PresensiController extends Controller
             ->first();
 
         $ceklintashari_presensi = $cekpresensi_sebelumnya != null  ? $cekpresensi_sebelumnya->lintashari : 0;
-
         $kode_cabang = $karyawan->kode_cabang;
         $kode_dept = $karyawan->kode_dept;
         $tgl_presensi = $ceklintashari_presensi == 1 && $jamsekarang < "09:00" ? $tgl_sebelumnya : $hariini;
@@ -94,8 +82,6 @@ class PresensiController extends Controller
 
         // Cek Jam Kerja Karyawan
         $namahari = $this->gethari(date('D', strtotime($tgl_presensi)));
-
-
         $jamkerja = DB::table('konfigurasi_jamkerja_by_date')
             ->join('jam_kerja', 'konfigurasi_jamkerja_by_date.kode_jam_kerja', '=', 'jam_kerja.kode_jam_kerja')
             ->where('nik', $nik)
@@ -120,15 +106,9 @@ class PresensiController extends Controller
             }
         }
 
-
-
-
         $presensi = DB::table('presensi')->where('tgl_presensi', $tgl_presensi)->where('nik', $nik);
         $cek = $presensi->count();
         $datapresensi = $presensi->first();
-
-
-
         $tgl_pulang = $jamkerja->lintashari == 1 ? date('Y-m-d', strtotime("+ 1 days", strtotime($tgl_presensi))) : $tgl_presensi;
         $jam_pulang = $hariini . " " . $jam;
         $jamkerja_pulang = $tgl_pulang . " " . $jamkerja->jam_pulang;
