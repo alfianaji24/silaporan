@@ -196,7 +196,7 @@
                 @endforeach
         </table>
 
-        <table width="100%" style="margin-top:100px">
+        <!-- <table width="100%" style="margin-top:100px">
             <tr>
                 <td colspan="2" style="text-align: right">Tasikmalaya, {{ date('d-m-Y') }}</td>
             </tr>
@@ -210,7 +210,7 @@
                     <i><b>Direktur</b></i>
                 </td>
             </tr>
-        </table>
+        </table> -->
     </section>
 
 </body>

@@ -234,8 +234,8 @@
             <li>{{ date('d-m-Y', strtotime($d->tanggal_libur)) }} - {{ $d->keterangan }}</li>
             @endforeach
         </ol>
-        <table width="100%" style="margin-top:100px">
-            <!-- <tr>
+        <!-- <table width="100%" style="margin-top:100px">
+            <tr>
                 <td></td>
                 <td style="text-align: center">Tasikmalaya, {{ date('d-m-Y') }}</td>
             </tr>
@@ -246,10 +246,10 @@
                 </td>
                 <td style="text-align: center; vertical-align:bottom">
                     <u>Daffa</u><br>
-                    <i><b>Direktur</b></i> -->
+                    <i><b>Direktur</b></i>
             </td>
             </tr>
-        </table>
+        </table> -->
 
 
     </section>

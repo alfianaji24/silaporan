@@ -86,8 +86,8 @@
                                 <path d="M21 21l-6 -6" />
                             </svg>
                         </span>
-                        <input type="text" value="" class="form-control" placeholder="Search…"
-                            aria-label="Search in website">
+                        <!-- <input type="text" value="" class="form-control" placeholder="Search…"
+                            aria-label="Search in website"> -->
                     </div>
                 </form>
             </div>
