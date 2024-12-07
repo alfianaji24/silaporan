@@ -13,7 +13,6 @@
     #keterangan {
         height: 5rem !important;
     }
-
 </style>
 <!-- App Header -->
 <div class="appHeader bg-primary text-light">
@@ -22,7 +21,7 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
-    <div class="pageTitle">Form Izin Absen</div>
+    <div class="pageTitle">Form Dinas Luar</div>
     <div class="right"></div>
 </div>
 <!-- * App Header -->
@@ -42,7 +41,7 @@
                 <input type="text" id="jml_hari" name="jml_hari" class="form-control" autocomplete="off" placeholder="Jumlah Hari" readonly>
             </div>
             <div class="form-group">
-                <input type="text" id="keterangan" name="keterangan" class="form-control" autocomplete="off" placeholder="Keterangan">
+                <input type="text" id="keterangan" name="keterangan" class="form-control" autocomplete="off" placeholder="Perihal Dinas Luar">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary w-100">Kirim</button>
@@ -123,21 +122,20 @@
             var keterangan = $("#keterangan").val();
             if (tgl_izin_dari == "" || tgl_izin_sampai == "") {
                 Swal.fire({
-                    title: 'Oops !'
-                    , text: 'Tanggal Harus Diisi'
-                    , icon: 'warning'
+                    title: 'Oops !',
+                    text: 'Tanggal Harus Diisi',
+                    icon: 'warning'
                 });
                 return false;
             } else if (keterangan == "") {
                 Swal.fire({
-                    title: 'Oops !'
-                    , text: 'Keterangan Harus Diisi'
-                    , icon: 'warning'
+                    title: 'Oops !',
+                    text: 'Keterangan Harus Diisi',
+                    icon: 'warning'
                 });
                 return false;
             }
         });
     });
-
 </script>
 @endpush

@@ -22,7 +22,7 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
-    <div class="pageTitle">Edit Izin Absen</div>
+    <div class="pageTitle">Edit Dinas Luar</div>
     <div class="right"></div>
 </div>
 <!-- * App Header -->
