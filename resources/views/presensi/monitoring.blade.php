@@ -133,7 +133,6 @@
                                             <tbody id="loadpresensi"></tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

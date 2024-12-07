@@ -318,7 +318,7 @@
                                                                     </svg>
                                                                 </a>
                                                             </div>
-                                                            @role('administrator', 'user')
+                                                            <!-- @role('administrator', 'user')
                                                                 <div>
                                                                     <form action="/karyawan/{{ $d->nik }}/delete"
                                                                         method="POST" style="margin-left:5px">
@@ -345,7 +345,7 @@
                                                                         </a>
                                                                     </form>
                                                                 </div>
-                                                            @endrole
+                                                            @endrole -->
                                                         </div>
 
                                                     </td>
