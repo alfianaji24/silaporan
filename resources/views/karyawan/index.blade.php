@@ -164,7 +164,7 @@
                                             <td>{{ $loop->iteration + $karyawan->firstItem() - 1 }}</td>
                                             <td>{{ $d->nik }}</td>
                                             <td>{{ $d->nama_lengkap }}</td>
-                                            <td>{{ date('d-m-y',strtotime($d->tgl_lahir)) }}</td>
+                                            <td>{{ date ('d-m-Y',strtotime($d->tgl_lahir)) }}</td>
                                             <td>{{ $d->jabatan }}</td>
                                             <td>{{ $d->no_hp }}</td>
                                             <td>
