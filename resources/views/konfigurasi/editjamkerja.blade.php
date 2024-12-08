@@ -154,8 +154,8 @@
             <div class="form-group">
                 <select name="status_istirahat" id="status_istirahat_edit" class="form-select">
                     <option value="">Istirahat</option>
-                    <option value="1">Ada</option>
-                    <option value="0">Tidak</option>
+                    <option value="1" {{ $jamkerja->status_istirahat == 1 ? 'selected' : '' }}>Ada</option>
+                    <option value="0" {{ $jamkerja->status_istirahat == 0 ? 'selected' : '' }}>Tidak</option>
                 </select>
             </div>
         </div>
@@ -239,7 +239,6 @@
             $(".setjamistirahat").hide();
         }
     }
-
     $("#status_istirahat_edit").change(function() {
         showsetjamistirahat();
     });
@@ -259,7 +258,6 @@
         var akhir_jam_istirahat = $("#akhir_jam_istirahat_edit").val();
         var status_istirahat = $("#status_istirahat_edit").val();
         if (kode_jam_kerja == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Kode Jam Kerja Harus Diisi !',
@@ -268,10 +266,8 @@
             }).then((result) => {
                 $("#kode_jam_kerja").focus();
             });
-
             return false;
         } else if (nama_jam_kerja == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Nama Jam Kerja Harus Diisi !',
@@ -280,10 +276,8 @@
             }).then((result) => {
                 $("#nama_jam_kerja").focus();
             });
-
             return false;
         } else if (awal_jam_masuk == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Awal Jam Masuk Harus Diisi !',
@@ -292,10 +286,8 @@
             }).then((result) => {
                 $("#awal_jam_masuk").focus();
             });
-
             return false;
         } else if (jam_masuk == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Jam Masuk Harus Diisi !',
@@ -304,10 +296,8 @@
             }).then((result) => {
                 $("#jam_masuk").focus();
             });
-
             return false;
         } else if (akhir_jam_masuk == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Akhir Masuk Harus Diisi !',
@@ -316,10 +306,8 @@
             }).then((result) => {
                 $("#akhir_jam_masuk").focus();
             });
-
             return false;
         } else if (status_istirahat === "") {
-
             Swal.fire({
                 title: 'Warning!',
                 text: 'Status Istirahat Harus Diisi !',
@@ -328,10 +316,8 @@
             }).then((result) => {
                 $("#status_istirahat").focus();
             });
-
             return false;
         } else if (awal_jam_istirahat == "" && status_istirahat == "1") {
-
             Swal.fire({
                 title: 'Warning!',
                 text: 'Jam Awal Istirahat Harus Diisi !',
@@ -340,10 +326,8 @@
             }).then((result) => {
                 $("#awal_jam_istirahat").focus();
             });
-
             return false;
         } else if (akhir_jam_istirahat == "" && status_istirahat == "1") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Jam Akhir Istirahat Harus Diisi !',
@@ -352,10 +336,8 @@
             }).then((result) => {
                 $("#akhir_jam_istirahat").focus();
             });
-
             return false;
         } else if (jam_pulang == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Jam Pulang Harus Diisi !',
@@ -364,10 +346,8 @@
             }).then((result) => {
                 $("#jam_pulang").focus();
             });
-
             return false;
         } else if (total_jam == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Total Jam Harus Diisi !',
@@ -376,10 +356,8 @@
             }).then((result) => {
                 $("#total_jam").focus();
             });
-
             return false;
         } else if (lintashari == "") {
-            // alert('Nik Harus Diisi');
             Swal.fire({
                 title: 'Warning!',
                 text: 'Lintas Hari Harus Diisi !',
@@ -388,7 +366,6 @@
             }).then((result) => {
                 $("#lintashari").focus();
             });
-
             return false;
         }
     });

@@ -20,7 +20,7 @@
                         <path d="M19 11l0 2"></path>
                     </svg>
                 </span>
-                <input type="text" value="{{ $karyawan->nik }}" id="nik" class="form-control" placeholder="Nik"
+                <input type="text" value="{{ $karyawan->nik }} & {{ $karyawan->pin }}" id="nik" class="form-control" placeholder="Nik"
                     name="nik_baru">
             </div>
         </div>
