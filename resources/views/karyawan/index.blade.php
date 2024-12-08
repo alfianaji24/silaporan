@@ -5,12 +5,10 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <!-- Page pre-title -->
-
                 <h2 class="page-title">
                     Data Karyawan
                 </h2>
             </div>
-
         </div>
     </div>
 </div>
@@ -56,7 +54,7 @@
                             <div class="col-12">
                                 <form action="/karyawan" method="GET">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-7">
                                             <div class="form-group">
                                                 <input type="text" name="nama_karyawan" id="nama_karyawan"
                                                     class="form-control" placeholder="Nama Karyawan"
@@ -67,7 +65,7 @@
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <select name="kode_dept" id="kode_dept" class="form-select">
-                                                    <option value="">Departemen</option>
+                                                    <option value="">Status Kepegawaian</option>
                                                     @foreach ($departemen as $d)
                                                     <option
                                                         {{ Request('kode_dept') == $d->kode_dept ? 'selected' : '' }}
@@ -76,7 +74,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-3">
+                                        <!-- <div class="col-3">
                                             <div class="form-group">
                                                 <select name="kode_cabang" id="kode_cabang" class="form-select">
                                                     <option value="">Semua Cabang</option>
@@ -89,7 +87,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         @endrole
                                         <div class="col-2">
                                             <div class="form-group">
@@ -123,8 +121,8 @@
                                             <th>Jabatan</th>
                                             <th>No. HP</th>
                                             <th>Foto</th>
-                                            <th>Departemen</th>
-                                            <th>Cabang</th>
+                                            <th>Status</th>
+                                            <!-- <th>Cabang</th> -->
                                             <th>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -179,7 +177,7 @@
                                                 @endif
                                             </td>
                                             <td>{{ $d->nama_dept }}</td>
-                                            <td>{{ $d->kode_cabang }}</td>
+                                            <!-- <td>{{ $d->kode_cabang }}</td> -->
                                             <td class="text-center">
                                                 @if ($d->status_location == 1)
                                                 <a href="/karyawan/{{ $d->nik }}/lockandunlocklocation">
@@ -496,7 +494,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <!-- <div class="row mt-2">
                         <div class="col-12">
                             <select name="kode_cabang" id="kode_cabang" class="form-select">
                                 <option value="">Cabang</option>
@@ -505,7 +503,7 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mt-2">
                         <div class="col-12">
                             <div class="form-group">

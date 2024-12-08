@@ -144,6 +144,10 @@ class PresensiController extends Controller
             } else if ($jam > $jamkerja->akhir_jam_masuk) {
                 return response()->json(['status' => false, 'message' => 'Waktu Absen Habis'], 500);
             } else {
+                $cekpresensimasuk = $presensi->first();
+                if ($cekpresensimasuk && $cekpresensimasuk->jam_in != null) {
+                    return response()->json(['stauts' => false, 'message' => 'Sudah Absen']);
+                }
                 $data = [
                     'nik' => $nik,
                     'tgl_presensi' => $tgl_presensi,

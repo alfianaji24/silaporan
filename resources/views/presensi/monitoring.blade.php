@@ -19,7 +19,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
@@ -61,7 +60,7 @@
                                         autocomplete="off">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <!-- <div class="col-4">
                                 <div class="form-group">
                                     <select name="kode_cabang" id="kode_cabang" class="form-select">
                                         <option value="">Semua Cabang</option>
@@ -72,11 +71,11 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-4">
                                 <div class="form-group">
                                     <select name="kode_dept" id="kode_dept" class="form-select">
-                                        <option value="">Semua Departemen</option>
+                                        <option value="">Status Kepegawaian</option>
                                         @foreach ($departemen as $d)
                                         <option value="{{ $d->kode_dept }}">
                                             {{ strtoupper($d->nama_dept) }}
@@ -121,7 +120,7 @@
                                                 <th>Nik</th>
                                                 <th>Nama Karyawan</th>
                                                 <th>Cabang</th>
-                                                <th>Dept</th>
+                                                <th>Status</th>
                                                 <th>Jadwal</th>
                                                 <th>Jam Masuk</th>
                                                 <th>Foto</th>

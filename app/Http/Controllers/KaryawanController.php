@@ -51,6 +51,7 @@ class KaryawanController extends Controller
     public function store(Request $request)
     {
         $nik = $request->nik;
+        $pin = $request->pin;
         $nama_lengkap = $request->nama_lengkap;
         $jabatan = $request->jabatan;
         $no_hp = $request->no_hp;
@@ -66,6 +67,7 @@ class KaryawanController extends Controller
         try {
             $data =  [
                 'nik' => $nik,
+                'pin' => $pin,
                 'nama_lengkap' => $nama_lengkap,
                 'jabatan' => $jabatan,
                 'no_hp' => $no_hp,
@@ -106,6 +108,7 @@ class KaryawanController extends Controller
     {
         $nik = Crypt::decrypt($nik);
         $nik_baru = $request->nik_baru;
+        $pin = $request->pin;
         $nama_lengkap = $request->nama_lengkap;
         $jabatan = $request->jabatan;
         $no_hp = $request->no_hp;
@@ -130,6 +133,7 @@ class KaryawanController extends Controller
         try {
             $data =  [
                 'nik' => $nik_baru,
+                'pin' => $pin,
                 'nama_lengkap' => $nama_lengkap,
                 'jabatan' => $jabatan,
                 'no_hp' => $no_hp,

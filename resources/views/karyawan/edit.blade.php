@@ -40,7 +40,7 @@
                     </svg>
                 </span>
                 <input type="text" id="pin" value="{{ $karyawan->pin }}" class="form-control"
-                    name="nama_lengkap" placeholder="Pin">
+                    name="pin" placeholder="Pin">
             </div>
         </div>
     </div>
