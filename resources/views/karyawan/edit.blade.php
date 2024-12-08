@@ -30,6 +30,25 @@
             <div class="input-icon mb-3">
                 <span class="input-icon-addon">
                     <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-lock-pin">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12.5 21h-5.5a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10c.24 0 .47 .042 .683 .12" />
+                        <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+                        <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+                        <path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" />
+                        <path d="M19 18v.01" />
+                    </svg>
+                </span>
+                <input type="text" id="pin" value="{{ $karyawan->pin }}" class="form-control"
+                    name="nama_lengkap" placeholder="Pin">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="input-icon mb-3">
+                <span class="input-icon-addon">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
                         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -95,8 +114,9 @@
             <select name="kode_dept" id="kode_dept" class="form-select">
                 <option value="">Departemen</option>
                 @foreach ($departemen as $d)
-                    <option {{ $karyawan->kode_dept == $d->kode_dept ? 'selected' : '' }} value="{{ $d->kode_dept }}">
-                        {{ $d->nama_dept }}</option>
+                <option {{ $karyawan->kode_dept == $d->kode_dept ? 'selected' : '' }} value="{{ $d->kode_dept }}">
+                    {{ $d->nama_dept }}
+                </option>
                 @endforeach
             </select>
         </div>
@@ -106,8 +126,8 @@
             <select name="kode_cabang" id="kode_cabang" class="form-select">
                 <option value="">Cabang</option>
                 @foreach ($cabang as $d)
-                    <option {{ $karyawan->kode_cabang == $d->kode_cabang ? 'selected' : '' }}
-                        value="{{ $d->kode_cabang }}">{{ strtoupper($d->nama_cabang) }}</option>
+                <option {{ $karyawan->kode_cabang == $d->kode_cabang ? 'selected' : '' }}
+                    value="{{ $d->kode_cabang }}">{{ strtoupper($d->nama_cabang) }}</option>
                 @endforeach
             </select>
         </div>
@@ -132,6 +152,7 @@
 <script>
     $("#frmEditkaryawan").submit(function() {
         var nik = $("#frmEditkaryawan").find("#nik").val();
+        var pin = $("#frmEditkaryawan").find("#pin").val();
         var nama_lengkap = $("#frmEditkaryawan").find("#nama_lengkap").val();
         var jabatan = $("#frmEditkaryawan").find("#jabatan").val();
         var no_hp = $("#frmEditkaryawan").find("#no_hp").val();
@@ -148,6 +169,17 @@
                 confirmButtonText: 'Ok'
             }).then((result) => {
                 $("#nik").focus();
+            });
+
+            return false;
+        } else if (pin == "") {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'Pin Harus Diisi !',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            }).then((result) => {
+                $("#pin").focus();
             });
 
             return false;
