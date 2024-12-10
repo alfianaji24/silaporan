@@ -37,7 +37,7 @@
                 <path d="M12 15v3" />
             </svg>
         </span>
-        <input type="date" id="tgl_lahir" value="" class="form-control"
+        <input type="date" id="tgl_lahir" value="{{ $karyawan->tgl_lahir }}" class="form-control"
             name="tgl_lahir" placeholder="Tanggal Lahir">
     </div>
     <div class="row">
