@@ -5,7 +5,6 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <!-- Page pre-title -->
-
                 <h2 class="page-title">
                     Monitoring Presensi
                 </h2>

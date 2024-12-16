@@ -148,6 +148,10 @@
                         class="dropdown-menu {{ request()->is(['presensi/laporan', 'presensi/rekap']) ? 'show' : '' }}">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item {{ request()->is(['presensi/log_presensi']) ? 'active' : '' }}"
+                                    href="/presensi/log_presensi">
+                                    Log Presensi
+                                </a>
                                 <a class="dropdown-item {{ request()->is(['presensi/laporan']) ? 'active' : '' }}"
                                     href="/presensi/laporan">
                                     Presensi
@@ -182,7 +186,6 @@
                         </span>
                     </a>
                     <div class="dropdown-menu  {{ request()->is(['konfigurasi', 'konfigurasi/*']) ? 'show' : '' }}">
-
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item  {{ request()->is(['konfigurasi/harilibur']) ? 'active' : '' }}"
