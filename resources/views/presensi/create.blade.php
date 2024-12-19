@@ -18,7 +18,7 @@
             width: 100% !important;
             margin: auto;
             height: auto !important;
-            border-radius: 15px;
+            border-radius: 10px;
 
         }
 
@@ -128,10 +128,10 @@
         var notifikasi_out = document.getElementById('notifikasi_out');
         var radius_sound = document.getElementById('radius_sound');
         Webcam.set({
-            height: 480,
+            height: 400,
             width: 640,
             image_format: 'jpeg',
-            jpeg_quality: 80
+            jpeg_quality: 100
         });
 
         Webcam.attach('.webcam-capture');

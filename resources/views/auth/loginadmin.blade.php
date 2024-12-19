@@ -60,8 +60,8 @@
                                             <input type="password" name="password" id="password" class="form-control" placeholder="Your password" autocomplete="off">
                                             <span class="input-group-text">
                                                 <!-- <a href="#" class="link-secondary" title="Show password" id="show_hide_password" data-bs-toggle="tooltip"> -->
-                                                    <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
-                                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                                                <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                                                         <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" />
@@ -80,14 +80,28 @@
                                         <button type="submit" class="btn btn-primary w-100">Sign in</button>
                                     </div>
                                 </form>
-                            </div>
 
+                            </div>
+                            <div class="hr-text">or</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col"><a href="#" class="btn w-100">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-google">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M20.945 11a9 9 0 1 1 -3.284 -5.997l-2.655 2.392a5.5 5.5 0 1 0 2.119 6.605h-4.125v-3h7.945z" />
+                                            </svg>
+                                            Login with Google
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="col-lg d-none d-lg-block">
-                    <img src="{{ asset('tabler/static/illustrations/undraw_secure_login_pdn4.svg') }}" height="300" class="d-block mx-auto" alt="">
+                    <img src="{{ asset('tabler/static/illustrations/undraw_secure_login_pdn_2.svg') }}" height="450" class="d-block mx-auto" alt="">
                 </div>
             </div>
         </div>

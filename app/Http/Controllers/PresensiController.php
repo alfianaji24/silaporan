@@ -808,16 +808,6 @@ class PresensiController extends Controller
             dd($e);
             return Redirect::back()->with(['warning' => 'Data Gagal Diproses']);
         }
-
-
-        // $update = DB::table('pengajuan_izin')->where('id', $kode_izin)->update([
-        //     'status_approved' => $status_approved
-        // ]);
-        // if ($update) {
-        //     return Redirect::back()->with(['success' => 'Data Berhasil Di Update']);
-        // } else {
-        //     return Redirect::back()->with(['warning' => 'Data Gagal Di Update']);
-        // }
     }
 
     public function batalkanizinsakit($kode_izin)
@@ -913,9 +903,9 @@ class PresensiController extends Controller
         $status = $request->status;
         $nik = $request->nik;
         $tanggal = $request->tanggal;
-        $jam_in = $status == "a" ? NULL : $request->jam_in;
-        $jam_out = $status == "a" ? NULL : $request->jam_out;
-        $kode_jam_kerja = $status == "a" ? NULL : $request->kode_jam_kerja;
+        $jam_in = $status == "l" ? NULL : $request->jam_in;
+        $jam_out = $status == "l" ? NULL : $request->jam_out;
+        $kode_jam_kerja = $status == "l" ? NULL : $request->kode_jam_kerja;
 
         try {
 
@@ -962,7 +952,37 @@ class PresensiController extends Controller
         return view('presensi.pilihjamkerja', compact('jamkerja'));
     }
 
-    
+    public function log_absensi(Request $request)
+    {
+        $tanggal = $request->tanggal;
+        $pin = $request->pin;
+        $kode_jadwal = $request->kode_jadwal;
+        if ($kode_jadwal == "JK01") {
+            $nextday = date('Y-m-d', strtotime('+1 day', strtotime($tanggal)));
+        } else {
+            $nextday =  $tanggal;
+        }
+        $specific_value = $pin;
+        $url = 'https://developer.fingerspot.io/api/get_attlog';
+        $data = '{"trans_id":"1", "cloud_id":"C262C44523362621", "start_date":"' . $tanggal . '", "end_date":"' . $nextday . '"}';
+        $authorization = "Authorization: Bearer VJGZ2HZKV2SRGT6R";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $authorization));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $res = json_decode($result);
+        $datafinger = $res->data;
+        $log = array_filter($datafinger, function ($obj) use ($specific_value) {
+            return $obj->pin == $specific_value;
+        });
+        return view('presensi.log_presensi', compact('log'));
+    }
 
 
 

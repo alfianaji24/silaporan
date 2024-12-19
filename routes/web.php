@@ -103,6 +103,7 @@ Route::middleware(['auth:karyawan'])->group(function () {
 Route::group(['middleware' => ['role:administrator|admin departemen,user']], function () {
     Route::get('/proseslogoutadmin', [AuthController::class, 'proseslogoutadmin']);
     Route::get('/panel/dashboardadmin', [DashboardController::class, 'dashboardadmin']);
+    Route::get('/panel/dashboardadmin/settings', [DashboardController::class, 'dashboardadmin']);
 
     //Karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index']);
@@ -118,7 +119,7 @@ Route::group(['middleware' => ['role:administrator|admin departemen,user']], fun
 
     //Presensi
     Route::get('/presensi/monitoring', [PresensiController::class, 'monitoring']);
-    Route::post('/presensi/log_presensi', [PresensiController::class, 'log_absensi']);
+    Route::get('/presensi/log_presensi', [PresensiController::class, 'log_absensi']);
     Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
     Route::post('/tampilkanpeta', [PresensiController::class, 'tampilkanpeta']);
     Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);

@@ -60,10 +60,7 @@ class DashboardController extends Controller
 
     public function dashboardadmin()
     {
-
-
         $hariini = date("Y-m-d");
-
         $rekappresensi = DB::table('presensi')
             ->selectRaw('
             SUM(IF(status="h",1,0)) as jmlhadir,
@@ -71,13 +68,60 @@ class DashboardController extends Controller
             SUM(IF(status="s",1,0)) as jmlsakit,
             SUM(IF(status="c",1,0)) as jmlcuti,
             SUM(IF(jam_in > jam_masuk ,1,0)) as jmlterlambat
-
             ')
             ->leftJoin('jam_kerja', 'presensi.kode_jam_kerja', '=', 'jam_kerja.kode_jam_kerja')
             ->where('tgl_presensi', $hariini)
             ->first();
-
-
         return view('dashboard.dashboardadmin', compact('rekappresensi'));
     }
+
+    public function editprofileadmin()
+    {
+        $nik = Auth::guard('user')->user()->nik;
+        $karyawan = DB::table('karyawan')->where('nik', $nik)->first();
+        return view('dashboard.accountadmin', compact('user'));
+    }
+
+    // public function updateprofile(Request $request)
+    // {
+    //     $nik = Auth::guard('karyawan')->user()->nik;
+    //     $nama_lengkap = $request->nama_lengkap;
+    //     $no_hp = $request->no_hp;
+    //     $password = Hash::make($request->password);
+    //     $karyawan = DB::table('karyawan')->where('nik', $nik)->first();
+    //     $request->validate([
+    //         'foto' => 'image|mimes:png,jpg|max:1024'
+    //     ]);
+    //     if ($request->hasFile('foto')) {
+    //         $foto = $nik . "." . $request->file('foto')->getClientOriginalExtension();
+    //     } else {
+    //         $foto = $karyawan->foto;
+    //     }
+    //     if (empty($request->password)) {
+    //         $data = [
+    //             'nama_lengkap' => $nama_lengkap,
+    //             'no_hp' => $no_hp,
+    //             'foto' => $foto
+    //         ];
+    //     } else {
+    //         $data = [
+    //             'nama_lengkap' => $nama_lengkap,
+    //             'no_hp' => $no_hp,
+    //             'password' => $password,
+    //             'foto' => $foto
+    //         ];
+    //     }
+
+    //     $update = DB::table('karyawan')->where('nik', $nik)->update($data);
+    //     if ($update) {
+    //         if ($request->hasFile('foto')) {
+    //             $folderPath = "public/uploads/karyawan/";
+    //             $request->file('foto')->storeAs($folderPath, $foto);
+    //         }
+    //         return Redirect::back()->with(['success' => 'Data Berhasil Di Update']);
+    //     } else {
+    //         return Redirect::back()->with(['error' => 'Data gagal Di Update']);
+    //     }
+    // }
 }
+

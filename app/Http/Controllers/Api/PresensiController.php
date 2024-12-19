@@ -164,37 +164,7 @@ class PresensiController extends Controller
             }
         }
     }
+
     
-    public function log_absensi(Request $request)
-    {
-        $tanggal = $request->tanggal;
-        $pin = $request->pin;
-        $kode_jadwal = $request->kode_jadwal;
-        if ($kode_jadwal == "JK01") {
-            $nextday = date('Y-m-d', strtotime('+1 day', strtotime($tanggal)));
-        } else {
-            $nextday =  $tanggal;
-        }
-        $specific_value = $pin;
-        $url = 'https://developer.fingerspot.io/api/get_attlog';
-        $data = '{"trans_id":"1", "cloud_id":"C262C44523362621", "start_date":"' . $tanggal . '", "end_date":"' . $nextday . '"}';
-        $authorization = "Authorization: Bearer VJGZ2HZKV2SRGT6R";
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $authorization));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        $res = json_decode($result);
-        $datafinger = $res->data;
-        $log = array_filter($datafinger, function ($obj) use ($specific_value) {
-            return $obj->pin == $specific_value;
-        });
-        return view('presensi.log_presensi', compact('log'));
-    }
 
 }

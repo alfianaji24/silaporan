@@ -26,10 +26,10 @@
                                 selected @endif
                         @endif
                         value="h">Hadir</option>
-                    <option value="a"
-                        @if ($presensi != null) @if ($presensi->status === 'a')
+                    <option value="L"
+                        @if ($presensi != null) @if ($presensi->status === 'l')
                         selected @endif
-                        @endif>Alfa</option>
+                        @endif>Libur</option>
                 </select>
             </div>
         </div>
