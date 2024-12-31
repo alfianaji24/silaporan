@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/presensi', App\Http\Controllers\Api\PresensiController::class);
+Route::apiResource('/presensi/log_presensi', App\Http\Controllers\Api\PresensiController::class);

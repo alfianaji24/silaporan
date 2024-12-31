@@ -119,7 +119,6 @@ Route::group(['middleware' => ['role:administrator|admin departemen,user']], fun
 
     //Presensi
     Route::get('/presensi/monitoring', [PresensiController::class, 'monitoring']);
-    Route::get('/presensi/log_presensi', [PresensiController::class, 'log_absensi']);
     Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
     Route::post('/tampilkanpeta', [PresensiController::class, 'tampilkanpeta']);
     Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
