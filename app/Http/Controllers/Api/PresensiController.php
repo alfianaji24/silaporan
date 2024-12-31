@@ -10,8 +10,6 @@ class PresensiController extends Controller
 {
     public function gethari($hari)
     {
-        // $hari = date("D");
-
         switch ($hari) {
             case 'Sun':
                 $hari_ini = "Minggu";
@@ -40,7 +38,6 @@ class PresensiController extends Controller
             case 'Sat':
                 $hari_ini = "Sabtu";
                 break;
-
             default:
                 $hari_ini = "Tidak di ketahui";
                 break;
@@ -77,7 +74,7 @@ class PresensiController extends Controller
         $ceklintashari_presensi = $cekpresensi_sebelumnya != null  ? $cekpresensi_sebelumnya->lintashari : 0;
         $kode_cabang = $karyawan->kode_cabang;
         $kode_dept = $karyawan->kode_dept;
-        $tgl_presensi = $ceklintashari_presensi == 1 && $jamsekarang < "06:00" ? $tgl_sebelumnya : $hariini;
+        $tgl_presensi = $ceklintashari_presensi == 1 && $jamsekarang < "08:30" ? $tgl_sebelumnya : $hariini;
         $jam = $jamsekarang;
 
         // Cek Jam Kerja Karyawan
@@ -165,6 +162,41 @@ class PresensiController extends Controller
         }
     }
 
+    public function log_absensi(Request $request)
+{
+    $tanggal = $request->tanggal;
+    $pin = $request->pin;
+    $kode_jadwal = $request->kode_jadwal;
+
+    // Daftar kode jadwal lintas hari
+    $lintas_hari = ["JK06", "JK09"];
     
+    if (in_array($kode_jadwal, $lintas_hari)) {
+        $nextday = date('Y-m-d', strtotime('+1 day', strtotime($tanggal)));
+    } else {
+        $nextday = $tanggal;
+    }
+
+    $specific_value = $pin;
+    $url = 'https://developer.fingerspot.io/api/get_attlog';
+    $data = '{"trans_id":"1", "cloud_id":"C262C44523362621", "start_date":"' . $tanggal . '", "end_date":"' . $nextday . '"}';
+    $authorization = "Authorization: Bearer VJGZ2HZKV2SRGT6R";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', $authorization));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    $res = json_decode($result);
+    $datafinger = $res->data;
+    $log = array_filter($datafinger, function ($obj) use ($specific_value) {
+        return $obj->pin == $specific_value;
+    });
+    return view('presensi.log_presensi', compact('log'));
+}
 
 }
