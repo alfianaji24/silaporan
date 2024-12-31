@@ -212,10 +212,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
                 <div class="col-6">
                     <table class="table">

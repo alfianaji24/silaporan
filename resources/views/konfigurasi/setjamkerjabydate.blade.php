@@ -16,7 +16,7 @@
                 <option value="">Pilih Tahun</option>
                 @php
                     $tahun_mulai = 2023;
-                    $tahun_akhir = date('Y');
+                    $tahun_akhir = 2027;
                 @endphp
                 @for ($t = $tahun_mulai; $t <= $tahun_akhir; $t++)
                     <option {{ $t == date('Y') ? 'selected' : '' }} value="{{ $t }}">{{ $t }}
